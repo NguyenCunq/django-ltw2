@@ -1,0 +1,19 @@
+{%  extends 'maintemplates/main.html' %}
+
+{% block content %}
+<br/>
+<div class="col-md-5 mx-left-align">
+   <div class="row">
+      <div class="col-md-6">
+         <p>Are you sure you want to delete "{{item}}"</p>
+
+         <form action="{% url 'delete_book' item.id %}" method="post">
+            {% csrf_token %}
+            <a class="btn btn-warning" href="{% url 'index' %}">Cancel</a>
+
+            <input class="btn btn-danger" type="submit" name="Confirm">
+         </form>
+      </div>
+   </div>
+</div>
+{% endblock %}
