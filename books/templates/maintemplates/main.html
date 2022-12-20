@@ -5,23 +5,188 @@
 <head>
 	<title>nguyencung1234</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 
-	<link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static './css/main.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static './css/bootstrap.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static './css/font-awesome.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static './css/ion.rangeSlider.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static './css/style.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static './css/style.css.map' %}">
+	<link rel="stylesheet" type="text/css" href="{% static './css/style.scss' %}">
+	<link rel="stylesheet" type="text/css" href="{% static './css/product.css' %}">
+	<script type="text/javascript">
+		var user = '{{request.user}}'
 
+		function getToken(name) {
+			var cookieValue = null;
+			if (document.cookie && document.cookie !== '') {
+				var cookies = document.cookie.split(';');
+				for (var i = 0; i < cookies.length; i++) {
+					var cookie = cookies[i].trim();
+					// Does this cookie string begin with the name we want?
+					if (cookie.substring(0, name.length + 1) === (name + '=')) {
+							cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+							break;
+					}
+				}
+			}
+			return cookieValue;
+		}
+		var csrftoken = getToken('csrftoken')
+
+		function getCookie(name) {
+				// Split cookie string and get all individual name=value pairs in an array
+				var cookieArr = document.cookie.split(";");
+
+				// Loop through the array elements
+				for(var i = 0; i < cookieArr.length; i++) {
+					var cookiePair = cookieArr[i].split("=");
+
+					/* Removing whitespace at the beginning of the cookie name
+					and compare it with the given string */
+					if(name == cookiePair[0].trim()) {
+						// Decode the cookie value and return
+						return decodeURIComponent(cookiePair[1]);
+					}
+				}
+
+				// Return null if not found
+				return null;
+		}
+		var cart = JSON.parse(getCookie('cart'))
+
+		if (cart == undefined){
+			cart = {}
+			console.log('Cart Created!', cart)
+			document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/"
+		}
+		console.log('Cart:', cart)
+
+		function Map1234() {  
+		  var mapOpt1 = {  
+		    center: new google.maps.LatLng(51.508742,-0.120850),  
+		    zoom:9,  
+		    mapTypeId: google.maps.MapTypeId.ROADMAP  
+		  };  
+		  var mapOpt2 = {  
+		    center: new google.maps.LatLng(51.508742,-0.120850),  
+		    zoom:9,  
+		    mapTypeId: google.maps.MapTypeId.SATELLITE  
+		  };  
+		  var mapOpt3 = {  
+		    center: new google.maps.LatLng(51.508742,-0.120850),  
+		    zoom:9,  
+		    mapTypeId: google.maps.MapTypeId.HYBRID  
+		  };  
+		  var mapOpt4 = {  
+		    center: new google.maps.LatLng(51.508742,-0.120850),  
+		    zoom:9,  
+		    mapTypeId: google.maps.MapTypeId.TERRAIN  
+		  };  
+		  var x = new google.maps.Map(document.getElementById("Map1"),mapOpt1);  
+		  var y = new google.maps.Map(document.getElementById("Map2"),mapOpt2);  
+		  var z = new google.maps.Map(document.getElementById("Map3"),mapOpt3);  
+		  var w = new google.maps.Map(document.getElementById("Map4"),mapOpt4);  
+		}  
+	</script>
 </head>
 <body>
 	{%  include 'maintemplates/cung.html' %}
-	<div class="container-fluid">
+	<div class="">
 	{% block content %}
 
 
 
 	{% endblock %}
    </div>
-	
-</body>
+   <div style="margin-top: 100px;">
+		<section class="info_section layout_padding2">
+			<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-lg-3 info-col">
+					<div class="info_detail">
+					<h4 style="color:#ffffff">
+						About Us
+					</h4>
+					<p>
+						Hệ thống bán sách trực tuyến uy tín hàng đầu Việt Nam của nguyencunq</br></br>
+						Design : nguyencunq
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+					</p>
+					<div class="info_social">
+						<a href="https://www.facebook.com/nguyencunq">
+							<i class="fa fa-facebook" aria-hidden="true"></i>
+						</a>
+						<a href="https://twitter.com/nguyencunq">
+							<i class="fa fa-twitter" aria-hidden="true"></i>
+						</a>
+						<a href="">
+							<i class="fa fa-linkedin" aria-hidden="true"></i>
+						</a>
+						<a href="https://www.instagram.com/nguyencunq/">
+							<i class="fa fa-instagram" aria-hidden="true"></i>
+						</a>
+					</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-3 info-col">
+					<div class="info_contact">
+					<h4 style="color:#ffffff">
+						Address
+					</h4>
+					<div class="contact_link_box">
+						<a href="">
+							<i class="fa fa-map-marker" aria-hidden="true"></i>
+							<span>
+							Học viện Công nghệ Bưu chính Viễn Thông - PTIT
+							</span>
+						</a>
+						<a href="">
+							<i class="fa fa-phone" aria-hidden="true"></i>
+							<span>
+							Call +84 868 698 828
+							</span>
+						</a>
+						<a href="">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+							<span>
+							cungptit02@gmail.com
+							</span>
+						</a>
+					</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-3 info-col">
+					<div class="info_contact">
+					<h4 style="color:#ffffff">
+						Join Us
+					</h4>
+					<form action="#">
+						<input type="text" placeholder="Enter email" />
+						<button type="submit">
+							Subscribe
+						</button>
+					</form>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-3 info-col">
+					<div class="map_container">
+					<div class="map">
+						<div id="googleMap">
+							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.292513153914!2d105.7852438508984!3d20.980908494716537!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135accdd8a1ad71%3A0xa2f9b16036648187!2zSOG7jWMgdmnhu4duIEPDtG5nIG5naOG7hyBCxrB1IGNow61uaCB2aeG7hW4gdGjDtG5n!5e0!3m2!1svi!2s!4v1671506632331!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+						</div>
+					</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		</section>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=myMap"></script>
+</body>
 </html>
